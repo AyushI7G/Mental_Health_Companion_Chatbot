@@ -1,24 +1,18 @@
 def set_pastel_theme():
     pastel_css = """
     <style>
-        /* Background & app text */
         .stApp {
             background-color: #fff8f0;
             color: #333333;
         }
 
         /* Chat message bubbles */
-        .stChatMessage > div {
+        .stChatMessage {
             border-radius: 15px;
         }
 
-        /* Bot messages text */
-        .stChatMessageAssistant p {
-            color: black !important;
-        }
-
-        /* User messages text */
-        .stChatMessageUser p {
+        /* Make all chat text black */
+        .stChatMessage p, .stMarkdown p {
             color: black !important;
         }
 
