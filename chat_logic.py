@@ -1,11 +1,19 @@
+# chat_logic.py
+
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import random
 from utils import positive_responses, neutral_responses, negative_responses, pick_tip, is_greeting
 
+# Download VADER lexicon at runtime (works in Streamlit Cloud)
+nltk.download('vader_lexicon', quiet=True)
+
 # Initialize sentiment analyzer
 sia = SentimentIntensityAnalyzer()
 
+
 def get_sentiment(text):
+    """Return 'positive', 'neutral', or 'negative' based on VADER sentiment score."""
     score = sia.polarity_scores(text)["compound"]
     if score >= 0.25:
         return "positive"
@@ -14,7 +22,12 @@ def get_sentiment(text):
     else:
         return "neutral"
 
+
 def generate_response(user_input, last_sentiment=None, last_tip=None):
+    """
+    Generate a chatbot response based on user input.
+    Returns: response_text, updated_last_sentiment, updated_last_tip
+    """
     text = user_input.lower()
 
     # --- Greetings ---
@@ -37,6 +50,7 @@ def generate_response(user_input, last_sentiment=None, last_tip=None):
             ])
         else:
             response = random.choice(negative_responses)
+
         # Add new relaxation tip
         tip = pick_tip(last_tip)
         response += " 💡 Tip: " + tip
