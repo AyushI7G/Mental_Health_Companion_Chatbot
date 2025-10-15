@@ -10,4 +10,4 @@ An AI-powered mental health companion chatbot with journaling, mood tracking, an
 - Responsive pastel-themed UI
 
 ## How to Run
-1. Click on the link
+1. Click on the given link
